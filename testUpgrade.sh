@@ -6,123 +6,125 @@ if [ $? -ne 0 ]; then
 fi
 starttime=$(date +%s)
 
+ChannelName="jiakechannel"
+Version="v1.1"
 echo "POST request Enroll on Jiake  ..."
 echo
-Jiake_TOKEN=$(curl -s -X POST \
+Nxia_TOKEN=$(curl -s -X POST \
   http://localhost:4000/users \
   -H "content-type: application/x-www-form-urlencoded" \
-  -d 'username=jiake&password=password&orgName=Jiake')
-echo $Jiake_TOKEN
-Jiake_TOKEN=$(echo $Jiake_TOKEN | jq ".token" | sed "s/\"//g")
+  -d 'username=nxia&password=password&orgName=Nxia')
+echo $Nxia_TOKEN
+Nxia_TOKEN=$(echo $Nxia_TOKEN | jq ".token" | sed "s/\"//g")
 echo
-echo "ORG1 token is $Jiake_TOKEN"
+echo "Nxia token is $Nxia_TOKEN"
 echo
-echo "POST request Enroll on Creator ..."
+echo "POST request Enroll on Nmen ..."
 echo
-Creator_TOKEN=$(curl -s -X POST \
+Nmen_TOKEN=$(curl -s -X POST \
   http://localhost:4000/users \
   -H "content-type: application/x-www-form-urlencoded" \
-  -d 'username=creator&password=password&orgName=Creator')
-echo $Creator_TOKEN
-Creator_TOKEN=$(echo $Creator_TOKEN | jq ".token" | sed "s/\"//g")
+  -d 'username=nmen&password=password&orgName=Nmen')
+echo $Nmen_TOKEN
+Nmen_TOKEN=$(echo $Nmen_TOKEN | jq ".token" | sed "s/\"//g")
 echo
-echo "Creator token is $Creator_TOKEN"
+echo "Nmen token is $Nmen_TOKEN"
 echo
-echo "POST request Enroll on Transfer ..."
+echo "POST request Enroll on dubai ..."
 echo
-Transfer_TOKEN=$(curl -s -X POST \
+Dubai_TOKEN=$(curl -s -X POST \
   http://localhost:4000/users \
   -H "content-type: application/x-www-form-urlencoded" \
-  -d 'username=transfer&password=password&orgName=Transfer')
-echo $Transfer_TOKEN
-Transfer_TOKEN=$(echo $Transfer_TOKEN | jq ".token" | sed "s/\"//g")
+  -d 'username=dubai&password=password&orgName=Dubai')
+echo $Dubai_TOKEN
+Dubai_TOKEN=$(echo $Dubai_TOKEN | jq ".token" | sed "s/\"//g")
 echo
-echo "Transfer token is $Transfer_TOKEN"
+echo "dubai token is $Dubai_TOKEN"
 echo
-echo "POST request Enroll on Transfer ..."
+echo "POST request Enroll on manager ..."
 echo
-Seller_TOKEN=$(curl -s -X POST \
+Manager_TOKEN=$(curl -s -X POST \
   http://localhost:4000/users \
   -H "content-type: application/x-www-form-urlencoded" \
-  -d 'username=seller&password=password&orgName=Seller')
-echo $Seller_TOKEN
-Seller_TOKEN=$(echo $Seller_TOKEN | jq ".token" | sed "s/\"//g")
+  -d 'username=seller&password=password&orgName=Manager')
+echo $Manager_TOKEN
+Manager_TOKEN=$(echo $Manager_TOKEN | jq ".token" | sed "s/\"//g")
 echo
-echo "Seller token is $Seller_TOKEN"
+echo "Manager token is $Manager_TOKEN"
 echo
 
 
-echo "POST Install chaincode on Jiake"
+echo "POST Install chaincode on Nxia"
 echo
 curl -s -X POST \
   http://localhost:4000/chaincodes \
-  -H "authorization: Bearer $Jiake_TOKEN" \
+  -H "authorization: Bearer $Nxia_TOKEN" \
   -H "content-type: application/json" \
   -d '{
 	"peers": ["peer1", "peer2"],
-	"chaincodeName":"hlccc",
-	"chaincodePath":"hlccc",
-	"chaincodeVersion":"v2.4"
+	"chaincodeName":"jiakechaincode",
+	"chaincodePath":"jiakechaincode",
+	"chaincodeVersion":"v1.1"
 }'
 echo
 echo
 
 
-echo "POST Install chaincode on Creator"
+echo "POST Install chaincode on nMEN"
 echo
 curl -s -X POST \
   http://localhost:4000/chaincodes \
-  -H "authorization: Bearer $Creator_TOKEN" \
+  -H "authorization: Bearer $Nmen_TOKEN" \
   -H "content-type: application/json" \
   -d '{
 	"peers": ["peer1","peer2"],
-	"chaincodeName":"hlccc",
-	"chaincodePath":"hlccc",
-	"chaincodeVersion":"v2.4"
+	"chaincodeName":"jiakechaincode",
+	"chaincodePath":"jiakechaincode",
+	"chaincodeVersion":"v1.1"
 }'
 echo
 echo
 
-echo "POST Install chaincode on Transfer"
+echo "POST Install chaincode on Dubai"
 echo
 curl -s -X POST \
   http://localhost:4000/chaincodes \
-  -H "authorization: Bearer $Transfer_TOKEN" \
+  -H "authorization: Bearer $Dubai_TOKEN" \
   -H "content-type: application/json" \
   -d '{
 	"peers": ["peer1","peer2"],
-	"chaincodeName":"hlccc",
-	"chaincodePath":"hlccc",
-	"chaincodeVersion":"v2.4"
+	"chaincodeName":"jiakechaincode",
+	"chaincodePath":"jiakechaincode",
+	"chaincodeVersion":"v1.1"
 }'
 echo
 echo
 
-echo "POST Install chaincode on Seller"
+echo "POST Install chaincode on Manager"
 echo
 curl -s -X POST \
   http://localhost:4000/chaincodes \
-  -H "authorization: Bearer $Seller_TOKEN" \
+  -H "authorization: Bearer $Manager_TOKEN" \
   -H "content-type: application/json" \
   -d '{
 	"peers": ["peer1","peer2"],
-	"chaincodeName":"hlccc",
-	"chaincodePath":"hlccc",
-	"chaincodeVersion":"v2.4"
+	"chaincodeName":"jiakechaincode",
+	"chaincodePath":"jiakechaincode",
+	"chaincodeVersion":"v1.1"
 }'
 echo
 echo
 
 
-echo "POST upgrade chaincode on peer1 of Jiake"
+echo "POST upgrade chaincode on peer1 of Nxia"
 echo
 curl -s -X PUT \
   http://localhost:4000/channels/jiakechannel/chaincodes \
-  -H "authorization: Bearer $Jiake_TOKEN" \
+  -H "authorization: Bearer $Manager_TOKEN" \
   -H "content-type: application/json" \
   -d '{
-	"chaincodeName":"hlccc",
-	"chaincodeVersion":"v2.4",
+	"chaincodeName":"jiakechaincode",
+	"chaincodeVersion":"v1.1",
   "args":[]
 }'
 echo

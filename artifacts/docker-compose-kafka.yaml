@@ -81,8 +81,8 @@ services:
     networks:
       - default
 
-  orderer.hlc.com:
-    container_name: orderer.hlc.com
+  orderer1.hlc.com:
+    container_name: orderer1.hlc.com
     image: hyperledger/fabric-orderer
     environment:
       - ORDERER_GENERAL_LOGLEVEL=debug
@@ -95,9 +95,9 @@ services:
       - ORDERER_GENERAL_TLS_PRIVATEKEY=/etc/hyperledger/crypto/orderer/tls/server.key
       - ORDERER_GENERAL_TLS_CERTIFICATE=/etc/hyperledger/crypto/orderer/tls/server.crt
       - ORDERER_GENERAL_TLS_ROOTCAS=[/etc/hyperledger/crypto/orderer/tls/ca.crt]
-      # - ORDERER_KAFKA_RETRY_SHORTINTERVAL=1s
-      # - ORDERER_KAFKA_RETRY_SHORTTOTAL=30s
-      # - ORDERER_KAFKA_VERBOSE=true
+      - ORDERER_KAFKA_RETRY_SHORTINTERVAL=1s
+      - ORDERER_KAFKA_RETRY_SHORTTOTAL=30s
+      - ORDERER_KAFKA_VERBOSE=true
     working_dir: /opt/gopath/src/github.com/hyperledger/fabric/orderers
     command: orderer
     ports:
@@ -110,8 +110,146 @@ services:
       - ./channel/crypto-config/peerOrganizations/nmen.hlc.com/peers/peer0.nmen.hlc.com/:/etc/hyperledger/crypto/peerNmen
       - ./channel/crypto-config/peerOrganizations/dubai.hlc.com/peers/peer0.dubai.hlc.com/:/etc/hyperledger/crypto/peerDubai
       - ./channel/crypto-config/peerOrganizations/manager.hlc.com/peers/peer0.manager.hlc.com/:/etc/hyperledger/crypto/peerManager
+    depends_on:
+      - kafka0.hlc.com
+      - kafka1.hlc.com
+      - kafka2.hlc.com
+      - kafka3.hlc.com
     networks:
       - default
+
+  orderer2.hlc.com:
+    container_name: orderer2.hlc.com
+    image: hyperledger/fabric-orderer
+    environment:
+      - ORDERER_GENERAL_LOGLEVEL=debug
+      - ORDERER_GENERAL_LISTENADDRESS=0.0.0.0
+      - ORDERER_GENERAL_GENESISMETHOD=file
+      - ORDERER_GENERAL_GENESISFILE=/etc/hyperledger/configtx/genesis.block
+      - ORDERER_GENERAL_LOCALMSPID=OrdererMSP
+      - ORDERER_GENERAL_LOCALMSPDIR=/etc/hyperledger/crypto/orderer/msp
+      - ORDERER_GENERAL_TLS_ENABLED=true
+      - ORDERER_GENERAL_TLS_PRIVATEKEY=/etc/hyperledger/crypto/orderer/tls/server.key
+      - ORDERER_GENERAL_TLS_CERTIFICATE=/etc/hyperledger/crypto/orderer/tls/server.crt
+      - ORDERER_GENERAL_TLS_ROOTCAS=[/etc/hyperledger/crypto/orderer/tls/ca.crt]
+      - ORDERER_KAFKA_RETRY_SHORTINTERVAL=1s
+      - ORDERER_KAFKA_RETRY_SHORTTOTAL=30s
+      - ORDERER_KAFKA_VERBOSE=true
+    working_dir: /opt/gopath/src/github.com/hyperledger/fabric/orderers
+    command: orderer
+    ports:
+      - 8050:8050
+    volumes:
+      - ./channel:/etc/hyperledger/configtx
+      - ./channel/crypto-config:/etc/hyperledger/fabric/crypto
+      - ./channel/crypto-config/ordererOrganizations/hlc.com/orderers/orderer2.hlc.com/:/etc/hyperledger/crypto/orderer
+      - ./channel/crypto-config/peerOrganizations/nxia.hlc.com/peers/peer0.nxia.hlc.com/:/etc/hyperledger/crypto/peerNxia
+      - ./channel/crypto-config/peerOrganizations/nmen.hlc.com/peers/peer0.nmen.hlc.com/:/etc/hyperledger/crypto/peerNmen
+      - ./channel/crypto-config/peerOrganizations/dubai.hlc.com/peers/peer0.dubai.hlc.com/:/etc/hyperledger/crypto/peerDubai
+      - ./channel/crypto-config/peerOrganizations/manager.hlc.com/peers/peer0.manager.hlc.com/:/etc/hyperledger/crypto/peerManager
+    depends_on:
+      - kafka0.hlc.com
+      - kafka1.hlc.com
+      - kafka2.hlc.com
+      - kafka3.hlc.com
+    networks:
+      - default
+
+  zookeeper0.hlc.com:
+    container_name: zookeeper0.hlc.com
+    extends:
+      file: base/kafka-base.yaml
+      service: zookeeper
+    environment:
+      - ZOO_MY_ID=1
+    ports:
+      - 2181:2181
+      - 2888:2888
+      - 3888:3888
+
+  zookeeper1.hlc.com:
+    container_name: zookeeper1.hlc.com
+    extends:
+      file: base/kafka-base.yaml
+      service: zookeeper
+    environment:
+      - ZOO_MY_ID=2
+    ports:
+      - 12181:2181
+      - 12888:2888
+      - 13888:3888
+
+  zookeeper2.hlc.com:
+    container_name: zookeeper2.hlc.com
+    extends:
+      file: base/kafka-base.yaml
+      service: zookeeper
+    environment:
+      - ZOO_MY_ID=3
+    ports:
+      - 22181:2181
+      - 22888:2888
+      - 23888:3888
+
+  kafka0.hlc.com:
+    container_name: kafka0.hlc.com
+    extends:
+      file: base/kafka-base.yaml
+      service: kafka
+    environment:
+      - KAFKA_BROKER_ID=0
+    depends_on:
+      - zookeeper0.hlc.com
+      - zookeeper1.hlc.com
+      - zookeeper2.hlc.com
+    ports:
+      - 9092:9092
+      - 9093:9093
+
+  kafka1.hlc.com:
+    container_name: kafka1.hlc.com
+    extends:
+      file: base/kafka-base.yaml
+      service: kafka
+    environment:
+      - KAFKA_BROKER_ID=1
+    depends_on:
+      - zookeeper0.hlc.com
+      - zookeeper1.hlc.com
+      - zookeeper2.hlc.com
+    ports:
+      - 10092:9092
+      - 10093:9093
+
+  kafka2.hlc.com:
+    container_name: kafka2.hlc.com
+    extends:
+      file: base/kafka-base.yaml
+      service: kafka
+    environment:
+      - KAFKA_BROKER_ID=2
+    depends_on:
+      - zookeeper0.hlc.com
+      - zookeeper1.hlc.com
+      - zookeeper2.hlc.com
+    ports:
+      - 11092:9092
+      - 11093:9093
+
+  kafka3.hlc.com:
+    container_name: kafka3.hlc.com
+    extends:
+      file: base/kafka-base.yaml
+      service: kafka
+    environment:
+      - KAFKA_BROKER_ID=3
+    depends_on:
+      - zookeeper0.hlc.com
+      - zookeeper1.hlc.com
+      - zookeeper2.hlc.com
+    ports:
+      - 12092:9092
+      - 12093:9093
 
   peer0.nxia.hlc.com:
     container_name: peer0.nxia.hlc.com
@@ -138,8 +276,9 @@ services:
       - ./channel/crypto-config/peerOrganizations/nxia.hlc.com/peers/peer0.nxia.hlc.com/tls:/etc/hyperledger/fabric/tls
         # - ./dataStorage/jiake/peer1/:/var/hyperledger/production/
     depends_on:
-      - orderer.hlc.com
-      - couchdbNxia
+      - orderer1.hlc.com
+      - orderer2.hlc.com
+      # - couchdbJiake
     networks:
       - default
 
@@ -164,8 +303,8 @@ services:
       - ./channel/crypto-config/peerOrganizations/nxia.hlc.com/peers/peer1.nxia.hlc.com/tls:/etc/hyperledger/fabric/tls
         # - ./dataStorage/jiake/peer2/:/var/hyperledger/production/
     depends_on:
-      - orderer.hlc.com
-      # - orderer2.hlc.com
+      - orderer1.hlc.com
+      - orderer2.hlc.com
     networks:
       - default
 
@@ -194,8 +333,8 @@ services:
       - ./channel/crypto-config/peerOrganizations/nmen.hlc.com/peers/peer0.nmen.hlc.com/tls:/etc/hyperledger/fabric/tls
        # - ./dataStorage/creator/peer1/:/var/hyperledger/production/
     depends_on:
-      - orderer.hlc.com
-      # - orderer2.hlc.com
+      - orderer1.hlc.com
+      - orderer2.hlc.com
       # - couchdbCreator
     networks:
       - default
@@ -221,8 +360,8 @@ services:
       - ./channel/crypto-config/peerOrganizations/nmen.hlc.com/peers/peer1.nmen.hlc.com/tls:/etc/hyperledger/fabric/tls
       # - ./dataStorage/creator/peer2/:/var/hyperledger/production/
     depends_on:
-      - orderer.hlc.com
-      # - orderer2.hlc.com
+      - orderer1.hlc.com
+      - orderer2.hlc.com
     networks:
       - default
 
@@ -251,8 +390,8 @@ services:
       - ./channel/crypto-config/peerOrganizations/dubai.hlc.com/peers/peer0.dubai.hlc.com/tls:/etc/hyperledger/fabric/tls
       # - ./dataStorage/transfer/peer1/:/var/hyperledger/production/
     depends_on:
-      - orderer.hlc.com
-      # - orderer2.hlc.com
+      - orderer1.hlc.com
+      - orderer2.hlc.com
       # - couchdbTransfer
     networks:
       - default
@@ -278,8 +417,8 @@ services:
       - ./channel/crypto-config/peerOrganizations/dubai.hlc.com/peers/peer1.dubai.hlc.com/tls:/etc/hyperledger/fabric/tls
         # - ./dataStorage/transfer/peer2/:/var/hyperledger/production/
     depends_on:
-      - orderer.hlc.com
-      # - orderer2.hlc.com
+      - orderer1.hlc.com
+      - orderer2.hlc.com
     networks:
       - default
 
@@ -308,8 +447,8 @@ services:
       - ./channel/crypto-config/peerOrganizations/manager.hlc.com/peers/peer0.manager.hlc.com/tls:/etc/hyperledger/fabric/tls
       # - ./dataStorage/transfer/peer1/:/var/hyperledger/production/
     depends_on:
-      - orderer.hlc.com
-      # - orderer2.hlc.com
+      - orderer1.hlc.com
+      - orderer2.hlc.com
       # - couchdbTransfer
     networks:
       - default
@@ -335,8 +474,8 @@ services:
       - ./channel/crypto-config/peerOrganizations/manager.hlc.com/peers/peer1.manager.hlc.com/tls:/etc/hyperledger/fabric/tls
         # - ./dataStorage/transfer/peer2/:/var/hyperledger/production/
     depends_on:
-      - orderer.hlc.com
-      # - orderer2.hlc.com
+      - orderer1.hlc.com
+      - orderer2.hlc.com
     networks:
       - default
 

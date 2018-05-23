@@ -40,7 +40,7 @@ function restartNetwork() {
 	rm -rf /tmp/hfc-test-kvs_peer* $HOME/.hfc-key-store/ /tmp/fabric-client-kvs_peer*
 
 	#Start the network
-	COMPOSE_PROJECT_NAME=jiake docker-compose up -d
+	COMPOSE_PROJECT_NAME=jiake docker-compose -f docker-compose-kafka.yaml up -d
 	cd -
 	echo
 }

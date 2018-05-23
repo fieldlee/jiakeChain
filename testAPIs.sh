@@ -49,14 +49,14 @@ echo
 
 echo "POST request Enroll on Manager ..."
 echo
-Manager_TOKEN=$(curl -s -X POST \
+M_Token=$(curl -s -X POST \
   http://localhost:4000/users \
   -H "content-type: application/x-www-form-urlencoded" \
   -d 'username=manager&password=password&orgName=Manager')
-echo $Manager_TOKEN
-Manager_TOKEN=$(echo $Manager_TOKEN | jq ".token" | sed "s/\"//g")
+echo $M_Token
+M_Token=$(echo $M_Token | jq ".token" | sed "s/\"//g")
 echo
-echo "Manager token is $Manager_TOKEN"
+echo "Manager token is $M_Token"
 echo
 
 echo
@@ -118,7 +118,7 @@ echo "POST request Join channel on Manger"
 echo
 curl -s -X POST \
   http://localhost:4000/channels/jiakechannel/peers \
-  -H "authorization: Bearer $Manager_TOKEN" \
+  -H "authorization: Bearer $M_Token" \
   -H "content-type: application/json" \
   -d '{
 	"peers": ["peer1","peer2"]

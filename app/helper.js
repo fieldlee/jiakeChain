@@ -44,7 +44,8 @@ for (let key in ORGS) {
 		client.setCryptoSuite(cryptoSuite);
 
 		let channel = client.newChannel(hfc.getConfigSetting('channelName'));
-		channel.addOrderer(newOrderer(client));
+		channel.addOrderer(newOrderer1(client));
+		channel.addOrderer(newOrderer2(client));
 
 		clients[key] = client;
 		channels[key] = channel;
@@ -55,12 +56,6 @@ for (let key in ORGS) {
 		caClients[key] = new copService(caUrl, null /*defautl TLS opts*/, '' /* default CA */, cryptoSuite);
 	}
 }
-// console.log("clients==============================");
-// console.log(clients);
-// console.log("channels==============================");
-// console.log(channels);
-// console.log("caClients==============================");
-// console.log(caClients);
 
 function setupPeers(channel, org, client) {
 	for (let key in ORGS[org].peers) {
@@ -79,17 +74,27 @@ function setupPeers(channel, org, client) {
 	}
 }
 
-function newOrderer(client) {
+function newOrderer1(client) {
 	var caRootsPath1 = ORGS.orderer1.tls_cacerts;
 	let data1 = fs.readFileSync(path.join(__dirname, caRootsPath1));
 	let caroots1 = Buffer.from(data1).toString();
-	// var caRootsPath2 = ORGS.orderer2.tls_cacerts;
-	// let data2 = fs.readFileSync(path.join(__dirname, caRootsPath2));
-	// let caroots2 = Buffer.from(data2).toString();
+
 	return client.newOrderer(ORGS.orderer1.url, {
 		'request-timeout': '100000',
 		'pem': caroots1,
 		'ssl-target-name-override': ORGS.orderer1['server-hostname']
+	});
+}
+
+function newOrderer2(client) {
+	var caRootsPath2 = ORGS.orderer2.tls_cacerts;
+	let data2 = fs.readFileSync(path.join(__dirname, caRootsPath2));
+	let caroots2 = Buffer.from(data2).toString();
+
+	return client.newOrderer(ORGS.orderer2.url, {
+		'request-timeout': '100000',
+		'pem': caroots2,
+		'ssl-target-name-override': ORGS.orderer2['server-hostname']
 	});
 }
 

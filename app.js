@@ -17,7 +17,6 @@ var cors = require('cors');
 // set配置文件 to fabric-client
 require('./config.js');
 
-
 var hfc = require('fabric-client');
 
 var helper = require('./app/helper.js');
