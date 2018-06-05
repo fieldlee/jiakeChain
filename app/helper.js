@@ -59,7 +59,8 @@ for (let key in ORGS) {
 
 function setupPeers(channel, org, client) {
 	for (let key in ORGS[org].peers) {
-		let data = fs.readFileSync(path.join(__dirname, ORGS[org].peers[key]['tls_cacerts']));
+		// let data = fs.readFileSync(path.join(__dirname, ORGS[org].peers[key]['tls_cacerts']));
+		let data = fs.readFileSync(ORGS[org].peers[key]['tls_cacerts']);
 		let peer = client.newPeer(
 			ORGS[org].peers[key].requests,
 			{
@@ -127,7 +128,8 @@ function newRemotes(names, forPeers, userOrg) {
 		let peerName = names[idx];
 		if (ORGS[userOrg].peers[peerName]) {
 			// found a peer matching the name
-			let data = fs.readFileSync(path.join(__dirname, ORGS[userOrg].peers[peerName]['tls_cacerts']));
+			// let data = fs.readFileSync(path.join(__dirname, ORGS[userOrg].peers[peerName]['tls_cacerts']));
+			let data = fs.readFileSync( ORGS[userOrg].peers[peerName]['tls_cacerts']);
 			let grpcOpts = {
 				'request-timeout': '100000',
 				'pem': Buffer.from(data).toString(),
