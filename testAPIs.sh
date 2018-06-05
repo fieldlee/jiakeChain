@@ -18,7 +18,7 @@ echo
 Nxia_TOKEN=$(curl -s -X POST \
   http://localhost:4000/users \
   -H "content-type: application/x-www-form-urlencoded" \
-  -d 'username=ningxia&password=password&orgName=Nxia')
+  -d 'username=ningxia&password=password&orgName=nxia')
 echo $Nxia_TOKEN
 Nxia_TOKEN=$(echo $Nxia_TOKEN | jq ".token" | sed "s/\"//g")
 echo
@@ -29,35 +29,14 @@ echo
 Nmen_TOKEN=$(curl -s -X POST \
   http://localhost:4000/users \
   -H "content-type: application/x-www-form-urlencoded" \
-  -d 'username=creator&password=password&orgName=Nmen')
+  -d 'username=creator&password=password&orgName=nmen')
 echo $Nmen_TOKEN
 Nmen_TOKEN=$(echo $Nmen_TOKEN | jq ".token" | sed "s/\"//g")
 echo
 echo "Creator token is $Nmen_TOKEN"
 echo
 echo "POST request Enroll on Transfer ..."
-echo
-Dubai_TOKEN=$(curl -s -X POST \
-  http://localhost:4000/users \
-  -H "content-type: application/x-www-form-urlencoded" \
-  -d 'username=transfer&password=password&orgName=Dubai')
-echo $Dubai_TOKEN
-Dubai_TOKEN=$(echo $Dubai_TOKEN | jq ".token" | sed "s/\"//g")
-echo
-echo "Transfer token is $Dubai_TOKEN"
-echo
 
-echo "POST request Enroll on Manager ..."
-echo
-M_Token=$(curl -s -X POST \
-  http://localhost:4000/users \
-  -H "content-type: application/x-www-form-urlencoded" \
-  -d 'username=manager&password=password&orgName=Manager')
-echo $M_Token
-M_Token=$(echo $M_Token | jq ".token" | sed "s/\"//g")
-echo
-echo "Manager token is $M_Token"
-echo
 
 echo
 echo "POST request Create channel  ..."
@@ -67,8 +46,8 @@ curl -s -X POST \
   -H "authorization: Bearer $Nxia_TOKEN" \
   -H "content-type: application/json" \
   -d '{
-	"channelName":"jiakechannel",
-	"channelConfigPath":"../artifacts/channel/channel.tx"
+	"channelName":"testchannel",
+	"channelConfigPath":"/tmp/certification/2d471788ec4f4bcba56b4bc61769798d/channel.tx"
 }'
 echo
 echo
@@ -79,7 +58,7 @@ sleep 5
 echo "POST request Join channel on Nxia"
 echo
 curl -s -X POST \
-  http://localhost:4000/channels/jiakechannel/peers \
+  http://localhost:4000/channels/testchannel/peers \
   -H "authorization: Bearer $Nxia_TOKEN" \
   -H "content-type: application/json" \
   -d '{
@@ -91,7 +70,7 @@ echo
 echo "POST request Join channel on Nmen"
 echo
 curl -s -X POST \
-  http://localhost:4000/channels/jiakechannel/peers \
+  http://localhost:4000/channels/testchannel/peers \
   -H "authorization: Bearer $Nmen_TOKEN" \
   -H "content-type: application/json" \
   -d '{
@@ -101,30 +80,6 @@ echo
 echo
 
 
-echo "POST request Join channel on Dubai"
-echo
-curl -s -X POST \
-  http://localhost:4000/channels/jiakechannel/peers \
-  -H "authorization: Bearer $Dubai_TOKEN" \
-  -H "content-type: application/json" \
-  -d '{
-	"peers": ["peer1","peer2"]
-  }'
-echo
-echo
-
-
-echo "POST request Join channel on Manger"
-echo
-curl -s -X POST \
-  http://localhost:4000/channels/jiakechannel/peers \
-  -H "authorization: Bearer $M_Token" \
-  -H "content-type: application/json" \
-  -d '{
-	"peers": ["peer1","peer2"]
-  }'
-echo
-echo
 
 echo "POST Install chaincode on Jiake"
 echo
@@ -157,42 +112,10 @@ curl -s -X POST \
 echo
 echo
 
-echo "POST Install chaincode on Dubai"
-echo
-curl -s -X POST \
-  http://localhost:4000/chaincodes \
-  -H "authorization: Bearer $Dubai_TOKEN" \
-  -H "content-type: application/json" \
-  -d '{
-	"peers": ["peer1","peer2"],
-	"chaincodeName":"jiakechaincode",
-	"chaincodePath":"jiakechaincode",
-	"chaincodeVersion":"v1.0"
-}'
-echo
-echo
-
-
-echo "POST Install chaincode on Manger"
-echo
-curl -s -X POST \
-  http://localhost:4000/chaincodes \
-  -H "authorization: Bearer $Manger_TOKEN" \
-  -H "content-type: application/json" \
-  -d '{
-	"peers": ["peer1","peer2"],
-	"chaincodeName":"jiakechaincode",
-	"chaincodePath":"jiakechaincode",
-	"chaincodeVersion":"v1.0"
-}'
-echo
-echo
-
-
 echo "POST instantiate chaincode on peer1 of Nxia"
 echo
 curl -s -X POST \
-  http://localhost:4000/channels/jiakechannel/chaincodes \
+  http://localhost:4000/channels/testchannel/chaincodes \
   -H "authorization: Bearer $Nxia_TOKEN" \
   -H "content-type: application/json" \
   -d '{
@@ -206,7 +129,7 @@ echo
 # echo "POST invoke chaincode on peers of Jiake and Creator"
 # echo
 # TRX_ID=$(curl -s -X POST \
-#   http://localhost:4000/channels/jiakechannel/chaincodes/hlccc \
+#   http://localhost:4000/channels/testchannel/chaincodes/hlccc \
 #   -H "authorization: Bearer $Nxia_TOKEN" \
 #   -H "content-type: application/json" \
 #   -d '{
@@ -220,7 +143,7 @@ echo
 echo "GET query chaincode on peer1 of Jiake"
 echo
 curl -s -X GET \
-  "http://localhost:4000/channels/jiakechannel/chaincodes/jiakechaincode?peer=peer1&fcn=query&args=%5B%22a%22%5D" \
+  "http://localhost:4000/channels/testchannel/chaincodes/jiakechaincode?peer=peer1&fcn=query&args=%5B%22a%22%5D" \
   -H "authorization: Bearer $Nxia_TOKEN" \
   -H "content-type: application/json"
 echo
@@ -229,7 +152,7 @@ echo
 echo "GET query Block by blockNumber"
 echo
 curl -s -X GET \
-  "http://localhost:4000/channels/jiakechannel/blocks/1?peer=peer1" \
+  "http://localhost:4000/channels/testchannel/blocks/1?peer=peer1" \
   -H "authorization: Bearer $Nxia_TOKEN" \
   -H "content-type: application/json"
 echo
@@ -237,7 +160,7 @@ echo
 
 # echo "GET query Transaction by TransactionID on peero in Jiake"
 # echo
-# curl -s -X GET http://localhost:4000/channels/Jiakechannel/transactions/$TRX_ID?peer=peer1 \
+# curl -s -X GET http://localhost:4000/channels/testchannel/transactions/$TRX_ID?peer=peer1 \
 #   -H "authorization: Bearer $Nxia_TOKEN" \
 #   -H "content-type: application/json"
 # echo
@@ -246,7 +169,7 @@ echo
 
 # echo "GET query Transaction by TransactionID on peer1 in Jiake"
 # echo
-# curl -s -X GET http://localhost:4000/channels/Jiakechannel/transactions/$TRX_ID?peer=peer1 \
+# curl -s -X GET http://localhost:4000/channels/testchannel/transactions/$TRX_ID?peer=peer1 \
 #   -H "authorization: Bearer $Nxia_TOKEN" \
 #   -H "content-type: application/json"
 # echo
@@ -270,7 +193,7 @@ echo
 echo "GET query ChainInfo on Jiake peer1"
 echo
 curl -s -X GET \
-  "http://localhost:4000/channels/jiakechannel?peer=peer1" \
+  "http://localhost:4000/channels/testchannel?peer=peer1" \
   -H "authorization: Bearer $Nxia_TOKEN" \
   -H "content-type: application/json"
 echo
