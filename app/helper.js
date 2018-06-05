@@ -413,7 +413,8 @@ var getOrgAdmin = function (userOrg) {
 	console.log("======================="+userOrg);
 	var admin = ORGS[userOrg].admin;
 	console.log(admin);
-	var keyPath = path.join(__dirname, admin.key);
+	// var keyPath = path.join(__dirname, admin.key);
+	var keyPath =  admin.key;
 	var keyPEM = Buffer.from(readAllFiles(keyPath)[0]).toString();
 	// var certPath = path.join(__dirname, admin.cert);
 	var certPath =  admin.cert;
