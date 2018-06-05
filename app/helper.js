@@ -76,7 +76,8 @@ function setupPeers(channel, org, client) {
 
 function newOrderer1(client) {
 	var caRootsPath1 = ORGS.orderer1.tls_cacerts;
-	let data1 = fs.readFileSync(path.join(__dirname, caRootsPath1));
+	// let data1 = fs.readFileSync(path.join(__dirname, caRootsPath1));
+	let data1 = fs.readFileSync(caRootsPath1)
 	let caroots1 = Buffer.from(data1).toString();
 
 	return client.newOrderer(ORGS.orderer1.url, {
@@ -88,7 +89,8 @@ function newOrderer1(client) {
 
 function newOrderer2(client) {
 	var caRootsPath2 = ORGS.orderer2.tls_cacerts;
-	let data2 = fs.readFileSync(path.join(__dirname, caRootsPath2));
+	// let data2 = fs.readFileSync(path.join(__dirname, caRootsPath2));
+	let data2 = fs.readFileSync( caRootsPath2);
 	let caroots2 = Buffer.from(data2).toString();
 
 	return client.newOrderer(ORGS.orderer2.url, {
