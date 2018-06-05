@@ -89,9 +89,12 @@ var updateChaincode = function ( chaincodeName,
 			var deployId = tx_id.getTransactionID();
 
 			eh = client.newEventHub();
-			let data = fs.readFileSync(path.join(__dirname, ORGS[org].peers['peer1'][
+			// let data = fs.readFileSync(path.join(__dirname, ORGS[org].peers['peer1'][
+			// 	'tls_cacerts'
+			// ]));
+			let data = fs.readFileSync( ORGS[org].peers['peer1'][
 				'tls_cacerts'
-			]));
+			]);
 			eh.setPeerAddr(ORGS[org].peers['peer1']['events'], {
 				pem: Buffer.from(data).toString(),
 				'ssl-target-name-override': ORGS[org].peers['peer1']['server-hostname']
