@@ -2,7 +2,7 @@
     "host":"localhost",
     "port":"4000",
     "jwt_expiretime": "360000",
-    "channelName":"jiakechannel",
+    "channelName":"testchannel",
     "CC_SRC_PATH":"../artifacts",
     "keyValueStore":"/tmp/fabric-client-kvs",
     "eventWaitTime":"100000",
