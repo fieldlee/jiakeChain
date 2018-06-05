@@ -2,13 +2,13 @@
 	"network-config": {
 		"orderer1": {
 			"url": "grpcs://localhost:7050",
-			"server-hostname": "orderer1.test.com",
-			"tls_cacerts": "/tmp/certification/2d471788ec4f4bcba56b4bc61769798d/crypto-config/ordererOrganizations/test.com/orderers/orderer1.test.com/tls/ca.crt"
+			"server-hostname": "order1.test.com",
+			"tls_cacerts": "/tmp/certification/2d471788ec4f4bcba56b4bc61769798d/crypto-config/ordererOrganizations/test.com/orderers/order1.test.com/tls/ca.crt"
 		},
 		"orderer2": {
 			"url": "grpcs://localhost:8050",
-			"server-hostname": "orderer2.test.com",
-			"tls_cacerts": "/tmp/certification/2d471788ec4f4bcba56b4bc61769798d/crypto-config/ordererOrganizations/test.com/orderers/orderer2.test.com/tls/ca.crt"
+			"server-hostname": "order2.test.com",
+			"tls_cacerts": "/tmp/certification/2d471788ec4f4bcba56b4bc61769798d/crypto-config/ordererOrganizations/test.com/orderers/order2.test.com/tls/ca.crt"
 		},
 		"nxia": {
 			"aliasName":"org1",
