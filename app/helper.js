@@ -32,7 +32,7 @@ var ORGS = hfc.getConfigSetting('network-config');
 var clients = {};
 var channels = {};
 var caClients = {};
-const orgList = ["Nxia", "Nmen", "Dubai","Manager"];
+const orgList = ["nxia", "nmen"]; //, "Dubai","Manager"
 var aliasNames = {};
 
 for (let key in ORGS) {
