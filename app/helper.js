@@ -415,7 +415,8 @@ var getOrgAdmin = function (userOrg) {
 	console.log(admin);
 	var keyPath = path.join(__dirname, admin.key);
 	var keyPEM = Buffer.from(readAllFiles(keyPath)[0]).toString();
-	var certPath = path.join(__dirname, admin.cert);
+	// var certPath = path.join(__dirname, admin.cert);
+	var certPath =  admin.cert;
 	var certPEM = readAllFiles(certPath)[0].toString();
 
 	var client = getClientForOrg(userOrg);
