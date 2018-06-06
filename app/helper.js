@@ -45,7 +45,7 @@ for (let key in ORGS) {
 
 		let channel = client.newChannel(hfc.getConfigSetting('channelName'));
 		channel.addOrderer(newOrderer1(client));
-		channel.addOrderer(newOrderer2(client));
+		// channel.addOrderer(newOrderer2(client));
 
 		clients[key] = client;
 		channels[key] = channel;

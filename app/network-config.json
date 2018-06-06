@@ -2,8 +2,8 @@
 	"network-config": {
 		"orderer1": {
 			"url": "grpcs://localhost:7050",
-			"server-hostname": "order1.jiake.com",
-			"tls_cacerts": "/tmp/certification/f18fafe1e2b4494696e1dac580ab6c53/crypto-config/ordererOrganizations/jiake.com/orderers/order1.jiake.com/tls/ca.crt"
+			"server-hostname": "order.jiake.com",
+			"tls_cacerts": "/tmp/certification/f18fafe1e2b4494696e1dac580ab6c53/crypto-config/ordererOrganizations/jiake.com/orderers/order.jiake.com/tls/ca.crt"
 		},
 		"orderer2": {
 			"url": "grpcs://localhost:8050",
