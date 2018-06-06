@@ -3,12 +3,12 @@
 		"orderer1": {
 			"url": "grpcs://192.168.0.236:7050",
 			"server-hostname": "order1.test.com",
-			"tls_cacerts": "/tmp/certification/2d471788ec4f4bcba56b4bc61769798d/crypto-config/ordererOrganizations/test.com/orderers/order1.test.com/tls/ca.crt"
+			"tls_cacerts": "/tmp/certification/f18fafe1e2b4494696e1dac580ab6c53/crypto-config/ordererOrganizations/test.com/orderers/order1.test.com/tls/ca.crt"
 		},
 		"orderer2": {
 			"url": "grpcs://192.168.0.236:8050",
 			"server-hostname": "order2.test.com",
-			"tls_cacerts": "/tmp/certification/2d471788ec4f4bcba56b4bc61769798d/crypto-config/ordererOrganizations/test.com/orderers/order2.test.com/tls/ca.crt"
+			"tls_cacerts": "/tmp/certification/f18fafe1e2b4494696e1dac580ab6c53/crypto-config/ordererOrganizations/test.com/orderers/order2.test.com/tls/ca.crt"
 		},
 		"nxia": {
 			"aliasName":"org1",
@@ -20,18 +20,18 @@
 					"requests": "grpcs://192.168.0.236:7051",
 					"events": "grpcs://192.168.0.236:7053",
 					"server-hostname": "peer0.nxia.test.com",
-					"tls_cacerts": "/tmp/certification/2d471788ec4f4bcba56b4bc61769798d/crypto-config/peerOrganizations/nxia.test.com/peers/peer0.nxia.test.com/tls/ca.crt"
+					"tls_cacerts": "/tmp/certification/f18fafe1e2b4494696e1dac580ab6c53/crypto-config/peerOrganizations/nxia.test.com/peers/peer0.nxia.test.com/tls/ca.crt"
 				},
 				"peer2": {
 					"requests": "grpcs://192.168.0.236:7056",
 					"events": "grpcs://192.168.0.236:7058",
 					"server-hostname": "peer1.nxia.test.com",
-					"tls_cacerts": "/tmp/certification/2d471788ec4f4bcba56b4bc61769798d/crypto-config/peerOrganizations/nxia.test.com/peers/peer1.nxia.test.com/tls/ca.crt"
+					"tls_cacerts": "/tmp/certification/f18fafe1e2b4494696e1dac580ab6c53/crypto-config/peerOrganizations/nxia.test.com/peers/peer1.nxia.test.com/tls/ca.crt"
 				}	
 			},
 			"admin": {
-				"key": "/tmp/certification/2d471788ec4f4bcba56b4bc61769798d/crypto-config/peerOrganizations/nxia.test.com/users/Admin@nxia.test.com/msp/keystore",
-				"cert": "/tmp/certification/2d471788ec4f4bcba56b4bc61769798d/crypto-config/peerOrganizations/nxia.test.com/users/Admin@nxia.test.com/msp/signcerts"
+				"key": "/tmp/certification/f18fafe1e2b4494696e1dac580ab6c53/crypto-config/peerOrganizations/nxia.test.com/users/Admin@nxia.test.com/msp/keystore",
+				"cert": "/tmp/certification/f18fafe1e2b4494696e1dac580ab6c53/crypto-config/peerOrganizations/nxia.test.com/users/Admin@nxia.test.com/msp/signcerts"
 			}
 		},
 		"nmen": {
@@ -44,18 +44,18 @@
 					"requests": "grpcs://192.168.0.236:8051",
 					"events": "grpcs://192.168.0.236:8053",
 					"server-hostname": "peer0.nmen.test.com",
-					"tls_cacerts": "/tmp/certification/2d471788ec4f4bcba56b4bc61769798d/crypto-config/peerOrganizations/nmen.test.com/peers/peer0.nmen.test.com/tls/ca.crt"
+					"tls_cacerts": "/tmp/certification/f18fafe1e2b4494696e1dac580ab6c53/crypto-config/peerOrganizations/nmen.test.com/peers/peer0.nmen.test.com/tls/ca.crt"
 				},
 				"peer2": {
 					"requests": "grpcs://192.168.0.236:8056",
 					"events": "grpcs://192.168.0.236:8058",
 					"server-hostname": "peer1.nmen.test.com",
-					"tls_cacerts": "/tmp/certification/2d471788ec4f4bcba56b4bc61769798d/crypto-config/peerOrganizations/nmen.test.com/peers/peer1.nmen.test.com/tls/ca.crt"
+					"tls_cacerts": "/tmp/certification/f18fafe1e2b4494696e1dac580ab6c53/crypto-config/peerOrganizations/nmen.test.com/peers/peer1.nmen.test.com/tls/ca.crt"
 				}	
 			},
 			"admin": {
-				"key": "/tmp/certification/2d471788ec4f4bcba56b4bc61769798d/crypto-config/peerOrganizations/nmen.test.com/users/Admin@nmen.test.com/msp/keystore",
-				"cert": "/tmp/certification/2d471788ec4f4bcba56b4bc61769798d/crypto-config/peerOrganizations/nmen.test.com/users/Admin@nmen.test.com/msp/signcerts"
+				"key": "/tmp/certification/f18fafe1e2b4494696e1dac580ab6c53/crypto-config/peerOrganizations/nmen.test.com/users/Admin@nmen.test.com/msp/keystore",
+				"cert": "/tmp/certification/f18fafe1e2b4494696e1dac580ab6c53/crypto-config/peerOrganizations/nmen.test.com/users/Admin@nmen.test.com/msp/signcerts"
 			}
 		}
 	}
