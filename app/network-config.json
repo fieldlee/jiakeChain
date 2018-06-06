@@ -12,8 +12,8 @@
 		},
 		"nxia": {
 			"aliasName":"org1",
-			"name": "nxia",
-			"mspid": "nxia",
+			"name": "nxiaMsp",
+			"mspid": "nxiaMsp",
 			"ca": "https://localhost:7054",
 			"peers": {
 				"peer1": {
@@ -36,8 +36,8 @@
 		},
 		"nmen": {
 			"aliasName":"org1",
-			"name": "nmen",
-			"mspid": "nmen",
+			"name": "nmenMsp",
+			"mspid": "nmenMsp",
 			"ca": "https://localhost:8054",
 			"peers": {
 				"peer1": {
