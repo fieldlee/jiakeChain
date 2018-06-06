@@ -3,7 +3,7 @@
 		"orderer1": {
 			"url": "grpcs://localhost:7050",
 			"server-hostname": "order.jiake.com",
-			"tls_cacerts": "/tmp/certification/260e098aad6346439b832e85d85379e0/crypto-config/ordererOrganizations/jiake.com/orderers/order.jiake.com/tls/ca.crt"
+			"tls_cacerts": "/tmp/certification/260e098aad6346439b832e85d85379e0/crypto-config/ordererOrganizations/jiake.com/orderers/order1.jiake.com/tls/ca.crt"
 		},
 		"orderer2": {
 			"url": "grpcs://localhost:8050",
