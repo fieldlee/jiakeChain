@@ -1,12 +1,12 @@
 {
 	"network-config": {
 		"orderer1": {
-			"url": "grpcs://localhost:7050",
+			"url": "grpcs://192.168.0.236:7050",
 			"server-hostname": "order1.test.com",
 			"tls_cacerts": "/tmp/certification/2d471788ec4f4bcba56b4bc61769798d/crypto-config/ordererOrganizations/test.com/orderers/order1.test.com/tls/ca.crt"
 		},
 		"orderer2": {
-			"url": "grpcs://localhost:8050",
+			"url": "grpcs://192.168.0.236:8050",
 			"server-hostname": "order2.test.com",
 			"tls_cacerts": "/tmp/certification/2d471788ec4f4bcba56b4bc61769798d/crypto-config/ordererOrganizations/test.com/orderers/order2.test.com/tls/ca.crt"
 		},
@@ -14,17 +14,17 @@
 			"aliasName":"org1",
 			"name": "nxia",
 			"mspid": "nxia",
-			"ca": "https://localhost:7054",
+			"ca": "https://192.168.0.236:7054",
 			"peers": {
 				"peer1": {
-					"requests": "grpcs://localhost:7051",
-					"events": "grpcs://localhost:7053",
+					"requests": "grpcs://192.168.0.236:7051",
+					"events": "grpcs://192.168.0.236:7053",
 					"server-hostname": "peer0.nxia.test.com",
 					"tls_cacerts": "/tmp/certification/2d471788ec4f4bcba56b4bc61769798d/crypto-config/peerOrganizations/nxia.test.com/peers/peer0.nxia.test.com/tls/ca.crt"
 				},
 				"peer2": {
-					"requests": "grpcs://localhost:7056",
-					"events": "grpcs://localhost:7058",
+					"requests": "grpcs://192.168.0.236:7056",
+					"events": "grpcs://192.168.0.236:7058",
 					"server-hostname": "peer1.nxia.test.com",
 					"tls_cacerts": "/tmp/certification/2d471788ec4f4bcba56b4bc61769798d/crypto-config/peerOrganizations/nxia.test.com/peers/peer1.nxia.test.com/tls/ca.crt"
 				}	
@@ -38,17 +38,17 @@
 			"aliasName":"org1",
 			"name": "nmen",
 			"mspid": "nmen",
-			"ca": "https://localhost:8054",
+			"ca": "https://192.168.0.236:8054",
 			"peers": {
 				"peer1": {
-					"requests": "grpcs://localhost:8051",
-					"events": "grpcs://localhost:8053",
+					"requests": "grpcs://192.168.0.236:8051",
+					"events": "grpcs://192.168.0.236:8053",
 					"server-hostname": "peer0.nmen.test.com",
 					"tls_cacerts": "/tmp/certification/2d471788ec4f4bcba56b4bc61769798d/crypto-config/peerOrganizations/nmen.test.com/peers/peer0.nmen.test.com/tls/ca.crt"
 				},
 				"peer2": {
-					"requests": "grpcs://localhost:8056",
-					"events": "grpcs://localhost:8058",
+					"requests": "grpcs://192.168.0.236:8056",
+					"events": "grpcs://192.168.0.236:8058",
 					"server-hostname": "peer1.nmen.test.com",
 					"tls_cacerts": "/tmp/certification/2d471788ec4f4bcba56b4bc61769798d/crypto-config/peerOrganizations/nmen.test.com/peers/peer1.nmen.test.com/tls/ca.crt"
 				}	
