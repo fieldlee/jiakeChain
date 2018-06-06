@@ -1,12 +1,12 @@
 {
 	"network-config": {
 		"orderer1": {
-			"url": "grpcs://192.168.0.236:7050",
+			"url": "grpcs://localhost:7050",
 			"server-hostname": "order1.jiake.com",
 			"tls_cacerts": "/tmp/certification/f18fafe1e2b4494696e1dac580ab6c53/crypto-config/ordererOrganizations/jiake.com/orderers/order1.jiake.com/tls/ca.crt"
 		},
 		"orderer2": {
-			"url": "grpcs://192.168.0.236:8050",
+			"url": "grpcs://localhost:8050",
 			"server-hostname": "order2.jiake.com",
 			"tls_cacerts": "/tmp/certification/f18fafe1e2b4494696e1dac580ab6c53/crypto-config/ordererOrganizations/jiake.com/orderers/order2.jiake.com/tls/ca.crt"
 		},
@@ -14,17 +14,17 @@
 			"aliasName":"org1",
 			"name": "nxia",
 			"mspid": "nxia",
-			"ca": "https://192.168.0.236:7054",
+			"ca": "https://localhost:7054",
 			"peers": {
 				"peer1": {
-					"requests": "grpcs://192.168.0.236:7051",
-					"events": "grpcs://192.168.0.236:7053",
+					"requests": "grpcs://localhost:7051",
+					"events": "grpcs://localhost:7053",
 					"server-hostname": "peer0.nxia.jiake.com",
 					"tls_cacerts": "/tmp/certification/f18fafe1e2b4494696e1dac580ab6c53/crypto-config/peerOrganizations/nxia.jiake.com/peers/peer0.nxia.jiake.com/tls/ca.crt"
 				},
 				"peer2": {
-					"requests": "grpcs://192.168.0.236:7056",
-					"events": "grpcs://192.168.0.236:7058",
+					"requests": "grpcs://localhost:7056",
+					"events": "grpcs://localhost:7058",
 					"server-hostname": "peer1.nxia.jiake.com",
 					"tls_cacerts": "/tmp/certification/f18fafe1e2b4494696e1dac580ab6c53/crypto-config/peerOrganizations/nxia.jiake.com/peers/peer1.nxia.jiake.com/tls/ca.crt"
 				}	
@@ -38,17 +38,17 @@
 			"aliasName":"org1",
 			"name": "nmen",
 			"mspid": "nmen",
-			"ca": "https://192.168.0.236:8054",
+			"ca": "https://localhost:8054",
 			"peers": {
 				"peer1": {
-					"requests": "grpcs://192.168.0.236:8051",
-					"events": "grpcs://192.168.0.236:8053",
+					"requests": "grpcs://localhost:8051",
+					"events": "grpcs://localhost:8053",
 					"server-hostname": "peer0.nmen.jiake.com",
 					"tls_cacerts": "/tmp/certification/f18fafe1e2b4494696e1dac580ab6c53/crypto-config/peerOrganizations/nmen.jiake.com/peers/peer0.nmen.jiake.com/tls/ca.crt"
 				},
 				"peer2": {
-					"requests": "grpcs://192.168.0.236:8056",
-					"events": "grpcs://192.168.0.236:8058",
+					"requests": "grpcs://localhost:8056",
+					"events": "grpcs://localhost:8058",
 					"server-hostname": "peer1.nmen.jiake.com",
 					"tls_cacerts": "/tmp/certification/f18fafe1e2b4494696e1dac580ab6c53/crypto-config/peerOrganizations/nmen.jiake.com/peers/peer1.nmen.jiake.com/tls/ca.crt"
 				}	
