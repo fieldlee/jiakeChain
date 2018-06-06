@@ -47,7 +47,7 @@ curl -s -X POST \
   -H "content-type: application/json" \
   -d '{
 	"channelName":"jiakechannel",
-	"channelConfigPath":"/tmp/certification/2d471788ec4f4bcba56b4bc61769798d/channel.tx"
+	"channelConfigPath":"/tmp/certification/f18fafe1e2b4494696e1dac580ab6c53/channel.tx"
 }'
 echo
 echo
