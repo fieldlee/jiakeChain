@@ -18,7 +18,7 @@ echo
 Nxia_TOKEN=$(curl -s -X POST \
   http://localhost:4000/users \
   -H "content-type: application/x-www-form-urlencoded" \
-  -d 'username=ningxia&password=password&orgName=nxia')
+  -d 'username=nxia&password=password&orgName=nxia')
 echo $Nxia_TOKEN
 Nxia_TOKEN=$(echo $Nxia_TOKEN | jq ".token" | sed "s/\"//g")
 echo
@@ -29,14 +29,12 @@ echo
 Nmen_TOKEN=$(curl -s -X POST \
   http://localhost:4000/users \
   -H "content-type: application/x-www-form-urlencoded" \
-  -d 'username=creator&password=password&orgName=nmen')
+  -d 'username=nmen&password=password&orgName=nmen')
 echo $Nmen_TOKEN
 Nmen_TOKEN=$(echo $Nmen_TOKEN | jq ".token" | sed "s/\"//g")
 echo
 echo "Creator token is $Nmen_TOKEN"
 echo
-echo "POST request Enroll on Transfer ..."
-
 
 echo
 echo "POST request Create channel  ..."
