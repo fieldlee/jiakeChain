@@ -233,7 +233,7 @@ var getRegisteredUsersForBack = function (username, userOrg, isJson, password) {
 		path: getKeyStoreForOrg(getOrgName(userOrg))
 	}).then((store) => {
 		client.setStateStore(store);
-		// clearing the user context before switching
+// clearing the user context before switching
 		client._userContext = null;
 		return client.getUserContext(username, true).then((user) => {
 			if (user && user.isEnrolled()) {
@@ -242,7 +242,7 @@ var getRegisteredUsersForBack = function (username, userOrg, isJson, password) {
 			} else {
 				let caClient = caClients[userOrg];
 
-				//            enroll member 成员信息
+//            enroll member 成员信息
 				return caClient.enroll({
 					enrollmentID: username,
 					enrollmentSecret: enrollmentSecret
