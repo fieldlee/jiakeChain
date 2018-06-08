@@ -3,12 +3,12 @@
 		"orderer1": {
 			"url": "grpcs://localhost:7050",
 			"server-hostname": "order.jiake.com",
-			"tls_cacerts": "/tmp/certification/f18fafe1e2b4494696e1dac580ab6c53/crypto-config/ordererOrganizations/jiake.com/orderers/order.jiake.com/tls/ca.crt"
+			"tls_cacerts": "/tmp/certification/d680397f3cf74e4ca84cb09e7ce1a67b/crypto-config/ordererOrganizations/jiake.com/orderers/order.jiake.com/tls/ca.crt"
 		},
 		"orderer2": {
 			"url": "grpcs://localhost:8050",
 			"server-hostname": "order2.jiake.com",
-			"tls_cacerts": "/tmp/certification/f18fafe1e2b4494696e1dac580ab6c53/crypto-config/ordererOrganizations/jiake.com/orderers/order2.jiake.com/tls/ca.crt"
+			"tls_cacerts": "/tmp/certification/d680397f3cf74e4ca84cb09e7ce1a67b/crypto-config/ordererOrganizations/jiake.com/orderers/order2.jiake.com/tls/ca.crt"
 		},
 		"nxia": {
 			"aliasName":"org1",
@@ -20,18 +20,18 @@
 					"requests": "grpcs://localhost:7051",
 					"events": "grpcs://localhost:7053",
 					"server-hostname": "peer0.nxia.jiake.com",
-					"tls_cacerts": "/tmp/certification/f18fafe1e2b4494696e1dac580ab6c53/crypto-config/peerOrganizations/nxia.jiake.com/peers/peer0.nxia.jiake.com/tls/ca.crt"
+					"tls_cacerts": "/tmp/certification/d680397f3cf74e4ca84cb09e7ce1a67b/crypto-config/peerOrganizations/nxia.jiake.com/peers/peer0.nxia.jiake.com/tls/ca.crt"
 				},
 				"peer2": {
 					"requests": "grpcs://localhost:7056",
 					"events": "grpcs://localhost:7058",
 					"server-hostname": "peer1.nxia.jiake.com",
-					"tls_cacerts": "/tmp/certification/f18fafe1e2b4494696e1dac580ab6c53/crypto-config/peerOrganizations/nxia.jiake.com/peers/peer1.nxia.jiake.com/tls/ca.crt"
+					"tls_cacerts": "/tmp/certification/d680397f3cf74e4ca84cb09e7ce1a67b/crypto-config/peerOrganizations/nxia.jiake.com/peers/peer1.nxia.jiake.com/tls/ca.crt"
 				}	
 			},
 			"admin": {
-				"key": "/tmp/certification/f18fafe1e2b4494696e1dac580ab6c53/crypto-config/peerOrganizations/nxia.jiake.com/users/Admin@nxia.jiake.com/msp/keystore",
-				"cert": "/tmp/certification/f18fafe1e2b4494696e1dac580ab6c53/crypto-config/peerOrganizations/nxia.jiake.com/users/Admin@nxia.jiake.com/msp/signcerts"
+				"key": "/tmp/certification/d680397f3cf74e4ca84cb09e7ce1a67b/crypto-config/peerOrganizations/nxia.jiake.com/users/Admin@nxia.jiake.com/msp/keystore",
+				"cert": "/tmp/certification/d680397f3cf74e4ca84cb09e7ce1a67b/crypto-config/peerOrganizations/nxia.jiake.com/users/Admin@nxia.jiake.com/msp/signcerts"
 			}
 		},
 		"nmen": {
@@ -44,18 +44,18 @@
 					"requests": "grpcs://localhost:8051",
 					"events": "grpcs://localhost:8053",
 					"server-hostname": "peer0.nmen.jiake.com",
-					"tls_cacerts": "/tmp/certification/f18fafe1e2b4494696e1dac580ab6c53/crypto-config/peerOrganizations/nmen.jiake.com/peers/peer0.nmen.jiake.com/tls/ca.crt"
+					"tls_cacerts": "/tmp/certification/d680397f3cf74e4ca84cb09e7ce1a67b/crypto-config/peerOrganizations/nmen.jiake.com/peers/peer0.nmen.jiake.com/tls/ca.crt"
 				},
 				"peer2": {
 					"requests": "grpcs://localhost:8056",
 					"events": "grpcs://localhost:8058",
 					"server-hostname": "peer1.nmen.jiake.com",
-					"tls_cacerts": "/tmp/certification/f18fafe1e2b4494696e1dac580ab6c53/crypto-config/peerOrganizations/nmen.jiake.com/peers/peer1.nmen.jiake.com/tls/ca.crt"
+					"tls_cacerts": "/tmp/certification/d680397f3cf74e4ca84cb09e7ce1a67b/crypto-config/peerOrganizations/nmen.jiake.com/peers/peer1.nmen.jiake.com/tls/ca.crt"
 				}	
 			},
 			"admin": {
-				"key": "/tmp/certification/f18fafe1e2b4494696e1dac580ab6c53/crypto-config/peerOrganizations/nmen.jiake.com/users/Admin@nmen.jiake.com/msp/keystore",
-				"cert": "/tmp/certification/f18fafe1e2b4494696e1dac580ab6c53/crypto-config/peerOrganizations/nmen.jiake.com/users/Admin@nmen.jiake.com/msp/signcerts"
+				"key": "/tmp/certification/d680397f3cf74e4ca84cb09e7ce1a67b/crypto-config/peerOrganizations/nmen.jiake.com/users/Admin@nmen.jiake.com/msp/keystore",
+				"cert": "/tmp/certification/d680397f3cf74e4ca84cb09e7ce1a67b/crypto-config/peerOrganizations/nmen.jiake.com/users/Admin@nmen.jiake.com/msp/signcerts"
 			}
 		}
 	}
